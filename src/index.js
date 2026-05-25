@@ -45,10 +45,8 @@ function removeProduct(event) {
 function createProduct() {
   const nameInput = document.querySelector('.create-product input[type="text"]');
   const priceInput = document.querySelector('.create-product input[type="number"]');
-  const newRemoveBtn = newRow.querySelector('.btn-remove');
   const productName = nameInput.value;
   const productPrice = parseFloat(priceInput.value);
-  const tbody = document.querySelector('#cart tbody');
   if (!productName || productPrice <= 0) {
     alert('wrong input');
     return;
@@ -68,11 +66,15 @@ function createProduct() {
     <button class="btn btn-remove">Remove</button>
   </td>
 `;
+
+  const newRemoveBtn = newRow.querySelector('.btn-remove');
+  newRemoveBtn.addEventListener('click', removeProduct);
+
+  const tbody = document.querySelector('#cart tbody');
   tbody.appendChild(newRow);
+
   nameInput.value = '';
   priceInput.value = 0;
-
-  newRemoveBtn.addEventListener('click', removeProduct);
 }
 
 window.addEventListener('load', () => {
